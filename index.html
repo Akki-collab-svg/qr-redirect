@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+</head>
+<body>
+  <p style="font-family:sans-serif;text-align:center;margin-top:40px;color:#555;">
+    Opening form, please wait...
+  </p>
+
+  <script>
+    var params = new URLSearchParams(window.location.search);
+    var asset  = params.get('asset') || 'A';
+
+    var now = new Date();
+    var ist = new Date(now.getTime() + (5.5 * 60 * 60 * 1000));
+
+    var year  = ist.getUTCFullYear();
+    var month = String(ist.getUTCMonth() + 1).padStart(2, '0');
+    var day   = String(ist.getUTCDate()).padStart(2, '0');
+    var hours = String(ist.getUTCHours()).padStart(2, '0');
+    var mins  = String(ist.getUTCMinutes()).padStart(2, '0');
+
+    var date = year + '-' + month + '-' + day;
+    var time = hours + ':' + mins;
+
+    var formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf8FrbGYZA47ks8098jE_ndh_PHYTbM94l8_mGcZVPCw8g6lw/viewform'
+      + '?usp=pp_url'
+      + '&entry.1213675647=' + encodeURIComponent(date)
+      + '&entry.1876483725=' + encodeURIComponent(time)
+      + '&entry.312018158='  + encodeURIComponent(asset.toLowerCase());
+
+    window.location.href = formUrl;
+  </script>
+</body>
+</html>
